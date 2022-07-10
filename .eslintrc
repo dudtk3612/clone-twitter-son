@@ -1,0 +1,46 @@
+{
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "requireConfigFile": "false",
+    "babelOptions": { "configFile": "./.babelrc" }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "extends": ["airbnb"],
+  "plugins": ["import", "react-hooks", "jsx-a11y"],
+  "rules": {
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "no-console": "off",
+    "no-underscore-dangle": "off",
+    "react/forbid-prop-types": "off",
+    "react/jsx-filename-extension": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "object-curly-newline": "off",
+    "linebreak-style": "off",
+    "no-param-reassign": "off",
+    "max-len": ["warn", { "code": 120 }],
+    "jsx-quotes": "off",
+    "comma-dangle": "off",
+    "react/jsx-wrap-multilines": "off",
+    "arrow-body-style": "off",
+    "operator-linebreak": "off",
+    "import/order": "off",
+    "default-param-last": "off",
+    "implicit-arrow-linebreak": "off",
+    "react/function-component-definition": "off",
+    "consistent-return": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/prop-types": "off",
+    "react/no-array-index-key": "off",
+    "prefer-arrow-callback": "off"
+  }
+}

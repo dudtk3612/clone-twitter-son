@@ -37,6 +37,12 @@ export const initialDummyPost = (number) =>
         {
           src: faker.image.image(),
         },
+        {
+          src: faker.image.image(),
+        },
+        {
+          src: faker.image.image(),
+        },
       ],
       Comments: [
         {

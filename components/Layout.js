@@ -106,6 +106,14 @@ const Layout = ({ children }) => {
         style={switchStyle}
       />
       <a
+        href='https://github.com/dudtk3612/clone-twitter-son'
+        target='_blank'
+        rel='noreferrer noopener'
+        style={linkStyle}
+      >
+        clone-twitter / github
+      </a>
+      <a
         href='https://emotion-diary-sys.web.app/'
         target='_blank'
         rel='noreferrer noopener'

@@ -119,7 +119,7 @@ const Layout = ({ children }) => {
         rel='noreferrer noopener'
         style={linkStyle}
       >
-        내 포트폴리오
+        감성일기장
       </a>
       <Global />
       <Menu items={items} mode='horizontal' style={menuStyle} />

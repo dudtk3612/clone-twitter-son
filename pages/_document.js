@@ -32,7 +32,18 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+          <meta property='og:title' content='클론트위터' />
+          <meta property='og:site_name' content='클론트위터' />
+          <meta
+            property='og:url'
+            content='https://son-clone-twitter.firebaseapp.com/'
+          />
+          <meta
+            property='og:image'
+            content='https://cdn.pixabay.com/photo/2016/05/01/23/20/twitter-bird-1366218_960_720.png'
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />

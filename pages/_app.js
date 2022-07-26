@@ -7,6 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import { store, persistor } from '../store/store';
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
+import Head from 'next/head';
 
 const CloneTwitter = ({ Component }) => {
   const themes = {
@@ -17,6 +18,9 @@ const CloneTwitter = ({ Component }) => {
     <ThemeSwitcherProvider themeMap={themes} defaultTheme='light'>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
+          <Head>
+            <link rel='shortcut icon' href='/images/favicon.ico' />
+          </Head>
           <Component />;
         </PersistGate>
       </Provider>

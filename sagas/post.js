@@ -7,6 +7,9 @@ import {
   ADD_POST_FAILURE,
   ADD_POST_REQUEST,
   ADD_POST_SUCCESS,
+  DECLARATION_FAILURE,
+  DECLARATION_REQUEST,
+  DECLARATION_SUCCESS,
   initialDummyPost,
   LOAD_POSTS_FAILURE,
   LOAD_POSTS_REQUEST,
@@ -138,6 +141,27 @@ function* updatePost(action) {
   }
 }
 
+function declarationAPI(data) {
+  return axios.post('/api/admin');
+}
+
+function* declaration(action) {
+  try {
+    // const result = yield call(declarationAPI, action.data);
+    yield delay(1000);
+    yield put({
+      type: DECLARATION_SUCCESS,
+      data: action.data,
+    });
+  } catch (error) {
+    console.error(error);
+    yield put({
+      type: DECLARATION_FAILURE,
+      error: error.response.data,
+    });
+  }
+}
+
 function* watchAddPost() {
   yield takeLatest(ADD_POST_REQUEST, addPost);
 }
@@ -158,6 +182,10 @@ function* watchUpdatePost() {
   yield takeLatest(UPDATE_POST_REQUEST, updatePost);
 }
 
+function* watchDeclaration() {
+  yield takeLatest(DECLARATION_REQUEST, declaration);
+}
+
 export default function* postSaga() {
   yield all([
     fork(watchAddPost),
@@ -165,5 +193,6 @@ export default function* postSaga() {
     fork(watchRemovePost),
     fork(watchLoadPosts),
     fork(watchUpdatePost),
+    fork(watchDeclaration),
   ]);
 }

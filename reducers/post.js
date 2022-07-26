@@ -6,6 +6,7 @@ const initialState = {
   mainPosts: [],
   morePosts: true,
   imagePaths: [],
+  admin: [],
   addPostLoading: false,
   addPostDone: false,
   addPostError: null,
@@ -21,6 +22,9 @@ const initialState = {
   updatePostLoading: false,
   updatePostDone: false,
   updatePostError: null,
+  declarationLoading: false,
+  declarationDone: false,
+  declarationError: null,
 };
 
 export const initialDummyPost = (number) =>
@@ -75,6 +79,10 @@ export const UPDATE_POST_REQUEST = 'UPDATE_POST_REQUEST';
 export const UPDATE_POST_SUCCESS = 'UPDATE_POST_SUCCESS';
 export const UPDATE_POST_FAILURE = 'UPDATE_POST_FAILURE';
 
+export const DECLARATION_REQUEST = 'DECLARATION_REQUEST';
+export const DECLARATION_SUCCESS = 'DECLARATION_SUCCESS';
+export const DECLARATION_FAILURE = 'DECLARATION_FAILURE';
+
 export const addPost = (data) => ({
   type: ADD_POST_REQUEST,
   data,
@@ -103,6 +111,10 @@ const dummyComment = (data) => ({
     id: 1,
     nickname: 'Son',
   },
+});
+
+const dummyAdmin = (data) => ({
+  ...data,
 });
 
 const reducer = (state = initialState, action) => {
@@ -181,6 +193,20 @@ const reducer = (state = initialState, action) => {
       case UPDATE_POST_FAILURE:
         draft.updatePostLoading = true;
         draft.updatePostDone = false;
+        break;
+      case DECLARATION_REQUEST:
+        draft.declarationLoading = true;
+        draft.declarationDone = false;
+        draft.declarationError = null;
+        break;
+      case DECLARATION_SUCCESS:
+        draft.declarationLoading = false;
+        draft.declarationDone = true;
+        draft.admin.push(dummyAdmin(action.data));
+        break;
+      case DECLARATION_FAILURE:
+        draft.declarationLoading = true;
+        draft.declarationDone = false;
         break;
       default:
         break;

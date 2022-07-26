@@ -15,16 +15,18 @@ import PostContent from './PostContent';
 import { REMOVE_POST_REQUEST, UPDATE_POST_REQUEST } from '../reducers/post';
 import FollowButton from './FollowButton';
 import PostUpdateForm from './PostUpdateForm';
+import DeclarationForm from './DeclarationForm';
 
 const PostCard = ({ post }) => {
   const id = useSelector((state) => state.user.me?.id);
-  const { removePostLoading, updatePostDone } = useSelector(
+  const { removePostLoading, updatePostDone, declarationDone } = useSelector(
     (state) => state.post
   );
   const dispatch = useDispatch();
   const [liked, setLiked] = useState(false);
   const [commentForm, setCommentForm] = useState(false);
   const [updateForm, setUpdateForm] = useState(false);
+  const [declarationForm, setDeclarationForm] = useState(false);
 
   const onToggleLike = useCallback(() => {
     setLiked((prev) => !prev);
@@ -62,14 +64,35 @@ const PostCard = ({ post }) => {
     [post]
   );
 
+  const onDeclaration = useCallback(() => {
+    setDeclarationForm(true);
+  }, []);
+
+  const onCancelSubmit = useCallback(() => {
+    setDeclarationForm(false);
+  }, []);
+
   useEffect(() => {
     if (updatePostDone) {
       onCloseUpdate();
     }
   }, [updatePostDone]);
 
+  useEffect(() => {
+    if (declarationDone) {
+      onCancelSubmit();
+    }
+  }, [declarationDone]);
+
   return (
     <>
+      {declarationForm && (
+        <DeclarationForm
+          setDeclarationForm={setDeclarationForm}
+          post={post}
+          onCancelSubmit={onCancelSubmit}
+        />
+      )}
       <Card
         cover={post.Images[0] && <PostImages images={post.Images} />}
         actions={[
@@ -100,7 +123,7 @@ const PostCard = ({ post }) => {
                     </Button>
                   </>
                 ) : (
-                  <Button>신고</Button>
+                  <Button onClick={onDeclaration}>신고</Button>
                 )}
               </Button.Group>
             }
@@ -126,6 +149,7 @@ const PostCard = ({ post }) => {
           }
         />
       </Card>
+
       {id && commentForm && (
         <>
           <CommentForm post={post} />

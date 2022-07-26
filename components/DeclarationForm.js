@@ -2,6 +2,7 @@ import { Button, Form, Input } from 'antd';
 import React, { useCallback, useRef } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import useInput from '../hooks/useInput';
 import { DECLARATION_REQUEST } from '../reducers/post';
@@ -112,6 +113,11 @@ const DeclarationForm = ({ post, onCancelSubmit }) => {
       </InputWrapper>
     </DeclarationWrapper>
   );
+};
+
+DeclarationForm.propTypes = {
+  post: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onCancelSubmit: PropTypes.func.isRequired,
 };
 
 export default DeclarationForm;

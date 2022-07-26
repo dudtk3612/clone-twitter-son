@@ -123,7 +123,7 @@ const PostCard = ({ post }) => {
                     </Button>
                   </>
                 ) : (
-                  <Button onClick={onDeclaration}>신고</Button>
+                  id && <Button onClick={onDeclaration}>신고</Button>
                 )}
               </Button.Group>
             }

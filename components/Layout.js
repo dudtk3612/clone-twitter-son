@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Col, Input, Menu, Row, Switch } from 'antd';
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle, keyframes } from 'styled-components';
 import { useSelector } from 'react-redux';
 import ProfileForm from './ProfileForm';
 import LoginForm from './LoginForm';
@@ -32,6 +32,22 @@ const Global = createGlobalStyle`
   .ant-menu-horizontal {
     border: none !important;
   }
+`;
+
+const boxFade = keyframes`
+  0%{
+    opacity: 1;
+  }
+  50%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+`;
+
+const LayoutFormBox = styled(Row)`
+  animation: ${boxFade} 1s 1s linear;
 `;
 
 const Layout = ({ children }) => {
@@ -123,7 +139,7 @@ const Layout = ({ children }) => {
       </a>
       <Global />
       <Menu items={items} mode='horizontal' style={menuStyle} />
-      <Row gutter={8}>
+      <LayoutFormBox gutter={8}>
         <Col xs={24} md={6}>
           {me ? <ProfileForm /> : <LoginForm />}
         </Col>
@@ -131,7 +147,7 @@ const Layout = ({ children }) => {
           {children}
         </Col>
         <Col xs={24} md={6} />
-      </Row>
+      </LayoutFormBox>
     </>
   );
 };

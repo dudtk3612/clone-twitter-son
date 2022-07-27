@@ -4,7 +4,6 @@ import faker from 'faker';
 
 const initialState = {
   mainPosts: [],
-  morePosts: true,
   imagePaths: [],
   admin: [],
   addPostLoading: false,
@@ -173,7 +172,6 @@ const reducer = (state = initialState, action) => {
         draft.loadPostsLoading = false;
         draft.loadPostsDone = true;
         draft.mainPosts = draft.mainPosts.concat(action.data);
-        draft.morePosts = draft.mainPosts.length < 50;
         break;
       case LOAD_POSTS_FAILURE:
         draft.loadPostsLoading = true;
